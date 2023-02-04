@@ -44,7 +44,7 @@ function versus(comp, playa){ //hand comparison function
 function game(){
 for (i = 0; i < 5; i++){
     let a = prompt("rock, paper, scissors");
-    alert(versus(getComputerChoice(), a.toLowerCase())); //call versus func and display result
+    alert(versus(getComputerChoice(), a.toLowerCase())); //call versus func (five rounds) and display result
 }
 }
 function whoWon(){
