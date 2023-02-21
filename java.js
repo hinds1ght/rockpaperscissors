@@ -1,62 +1,57 @@
-function getComputerChoice(){ //for RNG
-let x = Math.floor(Math.random()*3) + 1;
-    if (x == 1){
-        return 'rock';
-    }else if (x == 2){
-        return 'paper';
+const theGame = document.querySelector('#game')
+let pScore = document.createElement('span')
+let cScore = document.createElement('span')
+let playerScore = document.createElement('div')
+let compScore = document.createElement('div')
+let result = document.createElement('div')
+let win = document.createElement('h1')
+let a = 0
+let b = 0
+theGame.append(pScore, cScore, playerScore, compScore, result)
+const choices = ['rock', 'paper', 'scissors']
+
+const clicked = (e) => {
+  getResult(e.target.textContent, choices[Math.floor(Math.random() * choices.length)])
+  playerScore.textContent ='player: ' + e.target.textContent
+}
+
+choices.forEach(item => {
+        const button = document.createElement('button')
+        button.textContent = item
+        button.addEventListener('click', clicked)
+        theGame.appendChild(button)
+})
+
+const getResult = (player, computer) => {
+    switch (player + computer){
+        case 'scissorspaper':
+        case 'rockscissors':
+        case 'paperrock':
+            pScore.textContent = `player score: ${a = final(a)} `
+            compScore.textContent ='computer: ' + computer
+            result.textContent = 'result: you win'       
+        break   
+        case 'paperscissors':
+        case 'scissorsrock':
+        case 'rockpaper':
+            cScore.textContent = `computer score: ${b = final(b)} `
+            compScore.textContent ='computer: ' + computer
+            result.textContent = 'result: you lost'      
+        break
+        case 'scissorsscissors':
+        case 'rockrock':
+        case 'paperpaper':
+            compScore.textContent ='computer: ' + computer
+            result.textContent = 'result: Draw'  
+            break  
+    }
+    
+} 
+
+function final (point){
+    if ( point === 4){
+        return ('WIN')
     }else{
-        return 'scissors';
+        return point += 1
     }
 }
-    let playerScore = 0;
-    let compScore = 0;
-function versus(comp, playa){ //hand comparison function  
-    if (comp == 'rock' && playa == 'paper'){
-        playerScore += parseInt(1);
-        console.log("player score :" + playerScore);
-        return 'computer picked rock, you get a point!';   
-    }else if (comp == 'rock' && playa == 'scissors'){
-        compScore += parseInt(1);
-        console.log("compscore: " + compScore);
-        return 'computer picked rock, computer gets a point!';
-    }else if (comp == 'paper' && playa == 'scissors'){
-        playerScore += parseInt(1);
-        console.log("player score: " + playerScore);
-        return 'computer picked paper, you get a point!';
-    }else if (comp == 'paper' && playa == 'rock'){
-        compScore += parseInt(1);
-        console.log("compscore: " + compScore);
-        return 'computer picked paper, computer gets a point!!';   
-    }else if (comp == 'scissors' && playa == 'rock'){
-        playerScore += parseInt(1);
-        console.log("player score: " + playerScore);
-        return 'computer picked scissors, you get a point!';
-    }else if (comp == 'scissors' && playa == 'paper'){
-        compScore += parseInt(1);
-        console.log(compScore);
-        return 'computer picked scissors, computer gets a point!!';
-    }else if (comp == playa){
-        return 'DRAW!';
-    }else{
-        return 'HUH!?'
-    }
-}  
-function game(){
-for (i = 0; i < 5; i++){
-    let a = prompt("rock, paper, scissors");
-    alert(versus(getComputerChoice(), a.toLowerCase())); //call versus func (five rounds) and display result
-}
-}
-function whoWon(){
-    if (compScore > playerScore){
-        alert("YOU LOSE! Computer won the game!!!!!");
-        console.log('computer won the game');
-    }else if (compScore < playerScore){
-        alert("YOU WIN! You won the game!!!!!")
-        console.log('you won the game');
-    }else{
-        alert("DRAW!!!!!");
-    }
-}
-game();
-whoWon();
